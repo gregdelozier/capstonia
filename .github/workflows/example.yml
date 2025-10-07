@@ -1,0 +1,21 @@
+name: Example Workflow
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  example_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get deployment files
+        uses: actions/checkout@v2
+      - name: Do something in the GHA VM
+        run: |
+          echo $ echo Hello!          
+          echo Hello!
+          echo $ ls -la 
+          ls -la 
+          echo $ pwd
+          pwd
+          echo $ whoami
+          whoami
