@@ -9,6 +9,14 @@ jobs:
     steps:
       - name: Get deployment files
         uses: actions/checkout@v2
+      
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.ID_RSA }}
+          name: id_rsa
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
       - name: Do something in the GHA VM
         run: |
           echo $ echo Hello!          
@@ -19,3 +27,12 @@ jobs:
           pwd
           echo $ whoami
           whoami
+      - name: Do something on Cassini
+        run: |
+          echo $ ssh capstonia@cassini.cs.kent.edu ls -la         
+          ssh capstonia@cassini.cs.kent.edu ls -la
+          echo $ ssh capstonia@cassini.cs.kent.edu whoami         
+          ssh capstonia@cassini.cs.kent.edu whoami
+          echo $ ssh capstonia@cassini.cs.kent.edu hostname         
+          ssh capstonia@cassini.cs.kent.edu hostname
+
